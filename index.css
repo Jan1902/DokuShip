@@ -27,13 +27,6 @@ body {
     margin: 1rem 2rem;
 }
 
-.head #header-logo {
-    max-width: 10rem;
-    float: left;
-    content: url("https://www.dokuship.de/css/dokuship.png");
-    cursor: pointer;
-}
-
 .head #navbar {
     float: right;
 }
@@ -130,8 +123,8 @@ section .scroll-button:hover {
 }
 
 #first-section {
-    padding-top: 15%;
-    height: 80vh;
+    padding-top: 15rem;
+    height: calc(100vh - 15rem);
     padding-left: 3rem;
     text-transform: uppercase;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://wallpaperaccess.com/full/2757708.jpg");
@@ -157,7 +150,7 @@ section .scroll-button:hover {
 #sec-02 {
     background-color: white;
     color: black;
-    padding: 3rem;
+    padding: 3rem 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
@@ -320,6 +313,10 @@ section .scroll-button:hover {
     margin-top: 2rem;
 }
 
+#sec-05 h2 {
+    font-size: 2rem;
+}
+
 #sec-05 .input-pair:last-child {
     grid-column: span 2 / auto;
 }
@@ -358,8 +355,10 @@ section .scroll-button:hover {
 }
 
 .default-textbox:active,
-.default-textbox:focus {
+.default-textbox:focus,
+.default-textbox:visited {
     border: 2px solid var(--green);
+    outline: none;
 }
 
 .default-button {
@@ -377,7 +376,7 @@ section .scroll-button:hover {
 }
 
 .input-pair label {
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, .7);
     text-align: left;
     margin-bottom: .5rem;
 }
@@ -407,6 +406,17 @@ footer div {
     .nav-point {
         font-size: 3vw !important;
     }
+    #sec-02,
+    #sec-03>div,
+    #sec-04>div,
+    #sec-04 #system-details>div,
+    #sec-05>form>.contact-form,
+    #sec-06>div {
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
     #first-section {
         text-align: center;
         padding-left: 0;
@@ -420,6 +430,10 @@ footer div {
     #first-section h2 {
         margin-bottom: 15vh;
     }
+    #sec-02 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
     #sec-02 h2,
     #sec-02 p {
         max-width: 90%;
@@ -431,7 +445,6 @@ footer div {
         padding: 0;
         text-align: center;
     }
-    #sec-03>div>div,
     #sec-03 h2,
     #sec-04 h2 {
         font-size: 4rem;
@@ -447,15 +460,5 @@ footer div {
     }
     #sec-06>div {
         max-width: 100%;
-    }
-    #sec-02,
-    #sec-03>div,
-    #sec-04>div,
-    #sec-04 #system-details>div,
-    #sec-05>form>.contact-form,
-    #sec-06>div {
-        grid-template-columns: repeat(1, 1fr);
-        text-align: center;
-        padding-left: 0;
     }
 }
