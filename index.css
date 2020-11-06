@@ -127,9 +127,10 @@ section .scroll-button:hover {
     height: calc(100vh - 15rem);
     padding-left: 3rem;
     text-transform: uppercase;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://wallpaperaccess.com/full/2757708.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("images/vessel-02.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: right;
     background-size: cover;
 }
 
@@ -237,7 +238,7 @@ section .scroll-button:hover {
     text-align: middle;
     box-shadow: 5px 5px .5rem rgba(0, 0, 0, .5);
     cursor: pointer;
-    transition: margin 150ms ease-in-out;
+    transition: margin 150ms ease-in-out, filter 150ms ease-in-out;
 }
 
 #sec-04 .system-details-item:hover {
@@ -444,6 +445,9 @@ footer div {
     #sec-03>div>div {
         padding: 0;
         text-align: center;
+    }
+    #sec-03 ul {
+        list-style: none;
     }
     #sec-03 h2,
     #sec-04 h2 {

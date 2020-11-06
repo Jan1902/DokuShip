@@ -28,16 +28,21 @@ const updateNavBarColor = () => {
 }
 
 const updateNavPoints = () => {
-    var list = $(".nav-point").toArray().filter(p => $($(p).attr("href")).offset().top + 100 > $(window).scrollTop());
+    var list = $(".nav-point").toArray().filter(p => $($(p).attr("href")).position().top + $(".head").height() > window.scrollY);
     var last = list[list.length - 1];
     $(".nav-point").not(last).removeClass("selected");
     $(last).addClass("selected");
+    console.log($(window).scrollTop());
 }
 
 document.addEventListener('scroll', debounce(onScroll), { passive: true });
 
 const setupSystemDetails = () => {
     $(".system-details-item").click(function(e) {
+        if ($(this).attr("class").includes("selected")) {
+            return;
+        }
+
         if ($(".selected").length > 0) {
             $("#system-details").css("height", "0");
             $("#system-details").css("opacity", "0");
@@ -74,7 +79,7 @@ const setupSmoothScrolling = () => {
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
             if (target.length) {
                 $('html,body').animate({
-                    scrollTop: target.offset().top - 100
+                    scrollTop: target.offset().top - $(".head").height()
                 }, 700);
                 return false;
             }
@@ -102,4 +107,8 @@ $(function() {
     updateNavPoints();
     setupSystemDetails();
     setupEmail();
+
+    $(".nav-point").each(function() {
+        console.log($($(this).attr("href")).position().top);
+    });
 });
