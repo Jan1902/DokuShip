@@ -78,3 +78,7 @@ $(function() {
     $("[id^=system-details-]").first().css("display", "grid");
     $(".system-details-item").first().addClass("selected");
 });
+
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+    alert("mobil");
+}
