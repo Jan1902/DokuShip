@@ -43,7 +43,7 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     margin: 1rem;
-    transition: color .15s ease-in-out 0s;
+    /* transition: color .15s ease-in-out 0s; */
     text-transform: uppercase;
 }
 
@@ -77,7 +77,9 @@ body {
 }
 
 .head .nav-point:hover::after,
-.head .nav-point:hover::before {
+.head .nav-point:hover::before,
+.head .selected::after,
+.head .selected::before {
     transform: scaleX(1);
 }
 
@@ -237,7 +239,7 @@ section .scroll-button:hover {
     color: white;
     padding: 1rem;
     width: 90%;
-    max-width: 100%;
+    max-width: calc(100% - 2rem);
     max-height: 100%;
     text-align: middle;
     box-shadow: 5px 5px .5rem rgba(0, 0, 0, .5);
@@ -403,7 +405,7 @@ footer div {
         font-size: 2vw;
     }
     .nav-point {
-        font-size: 3.5vw !important;
+        font-size: 3vw !important;
     }
     #first-section {
         text-align: center;
@@ -427,6 +429,7 @@ footer div {
     }
     #sec-03>div>div {
         padding: 0;
+        text-align: center;
     }
     #sec-03>div>div,
     #sec-03 h2,
@@ -453,5 +456,6 @@ footer div {
     #sec-06>div {
         grid-template-columns: repeat(1, 1fr);
         text-align: center;
+        padding-left: 0;
     }
 }

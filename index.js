@@ -11,7 +11,12 @@ const debounce = (fn) => {
     }
 };
 
-const storeScroll = () => {
+const onScroll = () => {
+    updateNavBarColor();
+    updateNavPoints();
+}
+
+const updateNavBarColor = () => {
     var head = document.getElementsByClassName("head")[0];
     head.style.backgroundColor = "rgba(255, 255, 255, " + (window.scrollY / 300) + ")";
     head.style.color = "rgb(" + (255 - ((window.scrollY / 300) * 255)) + ", " + (255 - ((window.scrollY / 300) * 255)) + ", " + (255 - ((window.scrollY / 300) * 255)) + ")";
@@ -22,33 +27,16 @@ const storeScroll = () => {
     }
 }
 
-document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+const updateNavPoints = () => {
+    var list = $(".nav-point").toArray().filter(p => $($(p).attr("href")).offset().top + 100 > $(window).scrollTop());
+    var last = list[list.length - 1];
+    $(".nav-point").not(last).removeClass("selected");
+    $(last).addClass("selected");
+}
 
-$(function() {
-    $('a[href*=\\#]:not([href=\\#])').click(function() {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: target.offset().top - 100
-                }, 700);
-                return false;
-            }
-        }
-    });
-    $("#contact-send-button").click(function() {
-        var data = $("#email-form").serializeArray();
-        var tmp = window.open("mailto:anfrage@dokuship.de?subject=Anfrage - " +
-            encodeURIComponent(data[1].value) + ", " +
-            encodeURIComponent(data[0].value) + " - " +
-            encodeURIComponent(data[2].value) + "&body=" +
-            encodeURIComponent(data[4].value) + encodeURIComponent("\r\n\r\n") +
-            encodeURIComponent(data[2].value) + encodeURIComponent("\r\nTel.: ") +
-            encodeURIComponent(data[3].value));
-        tmp.close();
-    });
+document.addEventListener('scroll', debounce(onScroll), { passive: true });
 
+const setupSystemDetails = () => {
     $(".system-details-item").click(function(e) {
         if ($(".selected").length > 0) {
             $("#system-details").css("height", "0");
@@ -77,8 +65,41 @@ $(function() {
     $("#system-details").css("margin-top", "2rem");
     $("[id^=system-details-]").first().css("display", "grid");
     $(".system-details-item").first().addClass("selected");
-});
-
-if (/Mobi|Android/i.test(navigator.userAgent)) {
-    alert("mobil");
 }
+
+const setupSmoothScrolling = () => {
+    $('a[href*=\\#]:not([href=\\#])').click(function() {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top - 100
+                }, 700);
+                return false;
+            }
+        }
+    });
+}
+
+const setupEmail = () => {
+    $("#contact-send-button").click(function() {
+        var data = $("#email-form").serializeArray();
+        var tmp = window.open("mailto:anfrage@dokuship.de?subject=Anfrage - " +
+            encodeURIComponent(data[1].value) + ", " +
+            encodeURIComponent(data[0].value) + " - " +
+            encodeURIComponent(data[2].value) + "&body=" +
+            encodeURIComponent(data[4].value) + encodeURIComponent("\r\n\r\n") +
+            encodeURIComponent(data[2].value) + encodeURIComponent("\r\nTel.: ") +
+            encodeURIComponent(data[3].value));
+        tmp.close();
+    });
+}
+
+$(function() {
+    setupSmoothScrolling();
+    updateNavBarColor();
+    updateNavPoints();
+    setupSystemDetails();
+    setupEmail();
+});
