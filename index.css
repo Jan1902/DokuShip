@@ -229,7 +229,7 @@ section .scroll-button:hover {
 }
 
 #sec-04 .system-details-item {
-    background-color: orange;
+    background-color: var(--green);
     color: white;
     padding: 1rem;
     width: 90%;
@@ -254,10 +254,10 @@ section .scroll-button:hover {
 }
 
 #sec-04 #system-details {
-    height: 0;
     opacity: 0;
     margin-top: 0;
-    transition: height 500ms ease-in-out, opacity 500ms ease-in-out, margin-top 500ms ease-in-out;
+    max-height: 0;
+    transition: max-height 500ms ease-in-out, opacity 500ms ease-in-out, margin-top 500ms ease-in-out;
     overflow-y: hidden;
 }
 
@@ -274,6 +274,10 @@ section .scroll-button:hover {
 #sec-04 #system-details ul {
     padding-left: 0;
     list-style: none;
+}
+
+#sec-04 .system-details-arrow {
+    display: none;
 }
 
 #sec-04 #system-details li {
@@ -455,6 +459,62 @@ footer div {
     }
     #sec-04 .system-details>div {
         justify-items: center;
+    }
+    #sec-04 .system-details-arrow {
+        display: inline-block !important;
+    }
+    #sec-04 .system-details-arrow:before {
+        content: "\276C";
+        transform: rotate(0deg);
+        color: black;
+        font-size: 5rem;
+        position: absolute;
+        right: 3rem;
+        top: 3rem;
+        transition: transform 250ms ease-in-out;
+    }
+    #sec-04>div {
+        max-width: none;
+        cursor: default;
+    }
+    #sec-04 ul {
+        padding-left: 0;
+        max-width: 90%;
+        margin: auto;
+    }
+    #sec-04 .system-details-item {
+        position: relative;
+        text-align: left;
+        max-height: 10vh;
+        transition: max-height 500ms ease-in-out;
+    }
+    #sec-04 .system-details-item>div {
+        display: none;
+        text-align: center;
+    }
+    #sec-04 .selected {
+        padding-bottom: 2rem;
+        filter: none;
+        max-height: 100vh;
+    }
+    #sec-04 .selected>div {
+        display: block;
+    }
+    #sec-04 .selected .system-details-arrow:before {
+        transform: rotate(-90deg);
+    }
+    #sec-04 h3 {
+        max-width: 80%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    #sec-04 img {
+        margin: auto;
+        margin-right: 2rem;
+        vertical-align: middle;
+    }
+    #sec-04 li {
+        margin: .25rem;
     }
     #sec-05 .input-pair:last-child {
         grid-column: span 1;

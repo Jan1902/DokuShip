@@ -38,38 +38,55 @@ const updateNavPoints = () => {
 document.addEventListener('scroll', debounce(onScroll), { passive: true });
 
 const setupSystemDetails = () => {
-    $(".system-details-item").click(function(e) {
-        if ($(this).attr("class").includes("selected")) {
-            return;
-        }
+    if ($(window).width() <= 600) {
+        $(".system-details-item").click(function(e) {
+            if ($(this).attr("class").includes("selected")) {
+                $(this).removeClass("selected");
+            } else {
+                $(".system-details-item").removeClass("selected");
+                $(this).addClass("selected");
+            }
+        })
 
-        if ($(".selected").length > 0) {
-            $("#system-details").css("height", "0");
-            $("#system-details").css("opacity", "0");
-            $("#system-details").css("margin-top", "0");
-        }
+        $(".system-details-item").each(function() {
+            $("#system-details-" + $(this).attr("data-fold")).detach().appendTo($(this));
+        })
 
-        setTimeout(() => {
-            $("#system-details").css("height", "45vh");
-            $("#system-details").css("opacity", "100");
-            $("#system-details").css("margin-top", "2rem");
-            $("[id^=system-details-]").css("display", "none");
-            $("#system-details-" + this.getAttribute("data-fold")).css("display", "grid");
-        }, $(".selected").length > 0 ? 500 : 0);
+        $("#system-details").remove();
+    } else {
+        $(".system-details-item").click(function(e) {
+            if ($(this).attr("class").includes("selected")) {
+                return;
+            }
 
-        $(".system-details-item").removeClass("selected");
-        $(this).addClass("selected");
+            if ($(".selected").length > 0) {
+                $("#system-details").css("max-height", "0");
+                $("#system-details").css("opacity", "0");
+                $("#system-details").css("margin-top", "0");
+            }
 
-        $('html,body').animate({
-            scrollTop: $(".system-details-item").offset().top - 150
-        }, 700);
-    });
+            setTimeout(() => {
+                $("#system-details").css("max-height", "75vh");
+                $("#system-details").css("opacity", "100");
+                $("#system-details").css("margin-top", "2rem");
+                $("[id^=system-details-]").css("display", "none");
+                $("#system-details-" + this.getAttribute("data-fold")).css("display", "grid");
+            }, $(".selected").length > 0 ? 500 : 0);
 
-    $("#system-details").css("height", "45vh");
-    $("#system-details").css("opacity", "100");
-    $("#system-details").css("margin-top", "2rem");
-    $("[id^=system-details-]").first().css("display", "grid");
-    $(".system-details-item").first().addClass("selected");
+            $(".system-details-item").removeClass("selected");
+            $(this).addClass("selected");
+
+            $('html,body').animate({
+                scrollTop: $(".system-details-item").offset().top - 150
+            }, 700);
+        });
+
+        $("#system-details").css("max-height", "75vh");
+        $("#system-details").css("opacity", "100");
+        $("#system-details").css("margin-top", "2rem");
+        $("[id^=system-details-]").first().css("display", "grid");
+        $(".system-details-item").first().addClass("selected");
+    }
 }
 
 const setupSmoothScrolling = () => {
