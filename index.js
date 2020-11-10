@@ -43,7 +43,7 @@ const setupSystemDetails = () => {
             if ($(this).attr("class").includes("selected")) {
                 $(this).removeClass("selected");
             } else {
-                $(".system-details-item").removeClass("selected");
+
                 $(this).addClass("selected");
             }
         })
@@ -51,7 +51,6 @@ const setupSystemDetails = () => {
         $(".system-details-item").each(function() {
             $("#system-details-" + $(this).attr("data-fold")).detach().appendTo($(this));
         })
-
         $("#system-details").remove();
     } else {
         $(".system-details-item").click(function(e) {

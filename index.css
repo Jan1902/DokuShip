@@ -454,7 +454,8 @@ footer div {
         list-style: none;
     }
     #sec-03 h2,
-    #sec-04 h2 {
+    #sec-04 h2,
+    #sec-05 h2 {
         font-size: 4rem;
     }
     #sec-04 .system-details>div {
@@ -462,6 +463,7 @@ footer div {
     }
     #sec-04 .system-details-arrow {
         display: inline-block !important;
+        opacity: 100 !important;
     }
     #sec-04 .system-details-arrow:before {
         content: "\276C";
@@ -486,19 +488,24 @@ footer div {
         position: relative;
         text-align: left;
         max-height: 10vh;
-        transition: max-height 500ms ease-in-out;
+        transition: max-height 500ms ease-in-out, opacity 500ms ease-in-out;
+        border-radius: 5px;
+        overflow: hidden;
     }
     #sec-04 .system-details-item>div {
-        display: none;
+        opacity: 0;
         text-align: center;
     }
     #sec-04 .selected {
         padding-bottom: 2rem;
         filter: none;
-        max-height: 100vh;
+        max-height: 150vh;
+    }
+    #sec-04 .system-details-item:hover {
+        filter: none;
     }
     #sec-04 .selected>div {
-        display: block;
+        opacity: 1;
     }
     #sec-04 .selected .system-details-arrow:before {
         transform: rotate(-90deg);
