@@ -401,6 +401,13 @@ footer div {
     margin-top: 1rem;
 }
 
+footer a:visited,
+footer a:link,
+footer a:hover,
+footer a:active {
+    color: blue;
+}
+
 @media only screen and (max-width: 600px) {
     section {
         font-size: 5vw;
