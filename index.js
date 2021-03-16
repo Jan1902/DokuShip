@@ -37,57 +37,6 @@ const updateNavPoints = () => {
 
 document.addEventListener('scroll', debounce(onScroll), { passive: true });
 
-const setupSystemDetails = () => {
-    if ($(window).width() <= 600) {
-        $(".system-details-item").click(function(e) {
-            if ($(this).attr("class").includes("selected")) {
-                $(this).removeClass("selected");
-            } else {
-
-                $(this).addClass("selected");
-            }
-        })
-
-        $(".system-details-item").each(function() {
-            $("#system-details-" + $(this).attr("data-fold")).detach().appendTo($(this));
-        })
-        $("#system-details").remove();
-    } else {
-        $(".system-details-item").click(function(e) {
-            if ($(this).attr("class").includes("selected")) {
-                return;
-            }
-
-            if ($(".selected").length > 0) {
-                $("#system-details").css("max-height", "0");
-                $("#system-details").css("opacity", "0");
-                $("#system-details").css("margin-top", "0");
-            }
-
-            setTimeout(() => {
-                $("#system-details").css("max-height", "75vh");
-                $("#system-details").css("opacity", "100");
-                $("#system-details").css("margin-top", "2rem");
-                $("[id^=system-details-]").css("display", "none");
-                $("#system-details-" + this.getAttribute("data-fold")).css("display", "grid");
-            }, $(".selected").length > 0 ? 500 : 0);
-
-            $(".system-details-item").removeClass("selected");
-            $(this).addClass("selected");
-
-            $('html,body').animate({
-                scrollTop: $(".system-details-item").offset().top - 150
-            }, 700);
-        });
-
-        $("#system-details").css("max-height", "75vh");
-        $("#system-details").css("opacity", "100");
-        $("#system-details").css("margin-top", "2rem");
-        $("[id^=system-details-]").first().css("display", "grid");
-        $(".system-details-item").first().addClass("selected");
-    }
-}
-
 const setupSmoothScrolling = () => {
     $('a[href*=\\#]:not([href=\\#])').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -121,7 +70,6 @@ $(function() {
     setupSmoothScrolling();
     updateNavBarColor();
     updateNavPoints();
-    setupSystemDetails();
     setupEmail();
 
     $(".nav-point").each(function() {
